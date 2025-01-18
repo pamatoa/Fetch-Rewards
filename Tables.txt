@@ -1,0 +1,51 @@
+Tables
+
+Users
+-------
+user_id (PK) - STRING
+username - STRING
+email - STRING
+registration_date - DATETIME
+
+Brands
+-------
+brand_id (PK) - STRING
+brand_name - STRING
+brand_category - STRING
+
+Receipts
+-------
+receipt_id (PK) - STRING
+user_id (FK) - STRING
+brand_id (FK) - STRING
+purchase_date - DATETIME
+total_amount - DECIMAL
+payment_method - STRING
+
+Receipt_Items
+-------
+receipt_item_id (PK) - INTEGER (auto-increment)
+receipt_id (FK) - STRING
+item_name - STRING
+quantity - INTEGER
+price - DECIMAL
+
+Relationships:
+
+- Users 1:N Receipts (One user can have multiple receipts)
+    - Join Key: Users.user_id = Receipts.user_id
+
+- Brands 1:N Receipts (One brand can have multiple receipts)
+    - Join Key: Brands.brand_id = Receipts.brand_id
+
+- Receipts 1:N Receipt_Items (One receipt can have multiple items)
+    - Join Key: Receipts.receipt_id = Receipt_Items.receipt_id
+
+Legend:
+
+PK: Primary Key
+FK: Foreign Key
+STRING: Text data
+DATETIME: Date and time data
+DECIMAL: Numeric data with decimal places
+INTEGER: Whole number data
